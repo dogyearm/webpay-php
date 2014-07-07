@@ -63,7 +63,7 @@ class AbstractData
 
     protected function camelize($str)
     {
-        $value = preg_replace_callback("/([_-\s]?([a-z0-9]+))/", function ($matches) { return ucwords($matches[2]);}, $str);
+        $value = preg_replace_callback("/([_]?([a-z0-9]+))/", function ($matches) { return ucwords($matches[2]);}, $str);
         return strtolower($value[0]) . substr($value, 1);
     }
 

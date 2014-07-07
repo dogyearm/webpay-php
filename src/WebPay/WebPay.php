@@ -18,6 +18,8 @@ use WebPay\ApiException;
 use WebPay\ApiConnectionException;
 use WebPay\InvalidRequestException;
 use WebPay\InvalidResponseException;
+
+use WebPay\Data\EventResponse;
 use WebPay\ErrorResponse\InvalidRequestException as ERInvalidRequestException;
 use WebPay\ErrorResponse\AuthenticationException as ERAuthenticationException;
 use WebPay\ErrorResponse\CardException as ERCardException;
@@ -57,7 +59,7 @@ class WebPay
 
         $this->client->setDefaultOption('headers/Accept', "application/json");
 
-        $this->client->setDefaultOption('headers/User-Agent', "Apipa-webpay/2.0.2 php");
+        $this->client->setDefaultOption('headers/User-Agent', "Apipa-webpay/2.1.0 php");
 
         $this->client->setDefaultOption('headers/Accept-Language', "en");
         $this->client->getEventDispatcher()->addListener('request.error', array($this, 'onRequestError'));
@@ -77,6 +79,22 @@ class WebPay
         $this->client->setDefaultOption('headers/Accept-Language', $value);
     }
 
+
+
+    /**
+     * Decode request body sent as Webhook
+     *
+     * @param string $requestBody     JSON string
+     * @return EventResponse  object that represents webhook data or null
+     */
+    public function receiveWebhook($requestBody) {
+        $decodedJson = json_decode($requestBody, true);
+        if (!$decodedJson) {
+            throw new ApiConnectionException('Webhook request body is invalid JSON string', null);
+        }
+        return new EventResponse($decodedJson);
+    }
+#othewise
     public function __get($key)
     {
         $accessors = array('charge', 'customer', 'token', 'event', 'shop', 'recursion', 'account');
