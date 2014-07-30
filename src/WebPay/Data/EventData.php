@@ -2,10 +2,10 @@
 
 namespace WebPay\Data;
 
-use WebPay\InvalidRequestException;
 use WebPay\AbstractData;
 
-class EventData extends AbstractData {
+class EventData extends AbstractData
+{
 
     public function __construct(array $params)
     {
@@ -46,16 +46,16 @@ class EventData extends AbstractData {
     public function requestBody()
     {
         $result = array();
-
         $this->copyIfExists($this->attributes, $result, 'object', 'requestBody');
-
         $this->copyIfExists($this->attributes, $result, 'previous_attributes', 'requestBody');
+
         return $result;
     }
 
     public function queryParams()
     {
         $result = array();
+
         return $result;
     }
 }

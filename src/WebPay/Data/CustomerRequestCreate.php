@@ -4,9 +4,9 @@ namespace WebPay\Data;
 
 use WebPay\InvalidRequestException;
 use WebPay\AbstractData;
-use WebPay\Data\CardRequest;
 
-class CustomerRequestCreate extends AbstractData {
+class CustomerRequestCreate extends AbstractData
+{
 
     public static function create($params)
     {
@@ -37,20 +37,18 @@ class CustomerRequestCreate extends AbstractData {
     public function requestBody()
     {
         $result = array();
-
         $this->copyIfExists($this->attributes, $result, 'card', 'requestBody');
-
         $this->copyIfExists($this->attributes, $result, 'description', 'requestBody');
-
         $this->copyIfExists($this->attributes, $result, 'email', 'requestBody');
-
         $this->copyIfExists($this->attributes, $result, 'uuid', 'requestBody');
+
         return $result;
     }
 
     public function queryParams()
     {
         $result = array();
+
         return $result;
     }
 }

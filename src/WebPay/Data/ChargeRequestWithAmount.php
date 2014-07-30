@@ -4,9 +4,9 @@ namespace WebPay\Data;
 
 use WebPay\InvalidRequestException;
 use WebPay\AbstractData;
-use WebPay\Data\ChargeResponse;
 
-class ChargeRequestWithAmount extends AbstractData {
+class ChargeRequestWithAmount extends AbstractData
+{
 
     public static function create($params)
     {
@@ -17,7 +17,7 @@ class ChargeRequestWithAmount extends AbstractData {
             return new ChargeRequestWithAmount($params);
         }
         if ((is_object($params) && $params instanceof ChargeResponse)) {
-            return new ChargeRequestWithAmount(array('id' => $params->id, 'amount' => $params->amount));
+            return new ChargeRequestWithAmount(array('id' => $params->id));
         }
         if (is_string($params)) {
             return new ChargeRequestWithAmount(array('id' => $params));
@@ -41,14 +41,15 @@ class ChargeRequestWithAmount extends AbstractData {
     public function requestBody()
     {
         $result = array();
-
         $this->copyIfExists($this->attributes, $result, 'amount', 'requestBody');
+
         return $result;
     }
 
     public function queryParams()
     {
         $result = array();
+
         return $result;
     }
 }

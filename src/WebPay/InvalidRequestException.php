@@ -2,8 +2,6 @@
 
 namespace WebPay;
 
-use WebPay\ApiException;
-
 class InvalidRequestException extends ApiException
 {
     private $badValue;

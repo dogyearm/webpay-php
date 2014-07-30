@@ -5,7 +5,8 @@ namespace WebPay\Data;
 use WebPay\InvalidRequestException;
 use WebPay\AbstractData;
 
-class EmptyRequest extends AbstractData {
+class EmptyRequest extends AbstractData
+{
 
     public static function create($params)
     {
@@ -34,12 +35,14 @@ class EmptyRequest extends AbstractData {
     public function requestBody()
     {
         $result = array();
+
         return $result;
     }
 
     public function queryParams()
     {
         $result = array();
+
         return $result;
     }
 }

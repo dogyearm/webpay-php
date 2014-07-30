@@ -4,9 +4,9 @@ namespace WebPay\Data;
 
 use WebPay\InvalidRequestException;
 use WebPay\AbstractData;
-use WebPay\Data\CreatedRange;
 
-class ChargeListRequest extends AbstractData {
+class ChargeListRequest extends AbstractData
+{
 
     public static function create($params)
     {
@@ -37,24 +37,20 @@ class ChargeListRequest extends AbstractData {
     public function requestBody()
     {
         $result = array();
+
         return $result;
     }
 
     public function queryParams()
     {
         $result = array();
-
         $this->copyIfExists($this->attributes, $result, 'count', 'queryParams');
-
         $this->copyIfExists($this->attributes, $result, 'offset', 'queryParams');
-
         $this->copyIfExists($this->attributes, $result, 'created', 'queryParams');
-
         $this->copyIfExists($this->attributes, $result, 'customer', 'queryParams');
-
         $this->copyIfExists($this->attributes, $result, 'recursion', 'queryParams');
-
         $this->copyIfExists($this->attributes, $result, 'shop', 'queryParams');
+
         return $result;
     }
 }

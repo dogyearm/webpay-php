@@ -4,9 +4,9 @@ namespace WebPay\Data;
 
 use WebPay\InvalidRequestException;
 use WebPay\AbstractData;
-use WebPay\Data\CustomerResponse;
 
-class CustomerIdRequest extends AbstractData {
+class CustomerIdRequest extends AbstractData
+{
 
     public static function create($params)
     {
@@ -41,12 +41,14 @@ class CustomerIdRequest extends AbstractData {
     public function requestBody()
     {
         $result = array();
+
         return $result;
     }
 
     public function queryParams()
     {
         $result = array();
+
         return $result;
     }
 }

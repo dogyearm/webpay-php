@@ -2,10 +2,10 @@
 
 namespace WebPay\Data;
 
-use WebPay\InvalidRequestException;
 use WebPay\AbstractData;
 
-class DeletedResponse extends AbstractData {
+class DeletedResponse extends AbstractData
+{
 
     public function __construct(array $params)
     {
@@ -22,14 +22,15 @@ class DeletedResponse extends AbstractData {
     public function requestBody()
     {
         $result = array();
-
         $this->copyIfExists($this->attributes, $result, 'deleted', 'requestBody');
+
         return $result;
     }
 
     public function queryParams()
     {
         $result = array();
+
         return $result;
     }
 }

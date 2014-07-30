@@ -4,9 +4,9 @@ namespace WebPay\Data;
 
 use WebPay\InvalidRequestException;
 use WebPay\AbstractData;
-use WebPay\Data\ShopResponse;
 
-class ShopRequestUpdate extends AbstractData {
+class ShopRequestUpdate extends AbstractData
+{
 
     public static function create($params)
     {
@@ -41,16 +41,16 @@ class ShopRequestUpdate extends AbstractData {
     public function requestBody()
     {
         $result = array();
-
         $this->copyIfExists($this->attributes, $result, 'description', 'requestBody');
-
         $this->copyIfExists($this->attributes, $result, 'details', 'requestBody');
+
         return $result;
     }
 
     public function queryParams()
     {
         $result = array();
+
         return $result;
     }
 }

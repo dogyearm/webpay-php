@@ -4,9 +4,9 @@ namespace WebPay\Data;
 
 use WebPay\InvalidRequestException;
 use WebPay\AbstractData;
-use WebPay\Data\RecursionResponse;
 
-class RecursionRequestResume extends AbstractData {
+class RecursionRequestResume extends AbstractData
+{
 
     public static function create($params)
     {
@@ -41,14 +41,15 @@ class RecursionRequestResume extends AbstractData {
     public function requestBody()
     {
         $result = array();
-
         $this->copyIfExists($this->attributes, $result, 'retry', 'requestBody');
+
         return $result;
     }
 
     public function queryParams()
     {
         $result = array();
+
         return $result;
     }
 }

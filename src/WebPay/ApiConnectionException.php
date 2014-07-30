@@ -2,8 +2,6 @@
 
 namespace WebPay;
 
-use WebPay\ApiException;
-
 class ApiConnectionException extends ApiException
 {
     public function __construct($message, $previous)

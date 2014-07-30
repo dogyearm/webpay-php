@@ -2,10 +2,10 @@
 
 namespace WebPay\Data;
 
-use WebPay\InvalidRequestException;
 use WebPay\AbstractData;
 
-class CardResponse extends AbstractData {
+class CardResponse extends AbstractData
+{
 
     public function __construct(array $params)
     {
@@ -22,30 +22,23 @@ class CardResponse extends AbstractData {
     public function requestBody()
     {
         $result = array();
-
         $this->copyIfExists($this->attributes, $result, 'object', 'requestBody');
-
         $this->copyIfExists($this->attributes, $result, 'exp_month', 'requestBody');
-
         $this->copyIfExists($this->attributes, $result, 'exp_year', 'requestBody');
-
         $this->copyIfExists($this->attributes, $result, 'fingerprint', 'requestBody');
-
         $this->copyIfExists($this->attributes, $result, 'last4', 'requestBody');
-
         $this->copyIfExists($this->attributes, $result, 'type', 'requestBody');
-
         $this->copyIfExists($this->attributes, $result, 'cvc_check', 'requestBody');
-
         $this->copyIfExists($this->attributes, $result, 'name', 'requestBody');
-
         $this->copyIfExists($this->attributes, $result, 'country', 'requestBody');
+
         return $result;
     }
 
     public function queryParams()
     {
         $result = array();
+
         return $result;
     }
 }

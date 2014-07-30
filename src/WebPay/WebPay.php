@@ -4,20 +4,6 @@ namespace WebPay;
 
 use Guzzle\Common\Event as GuzzleEvent;
 use Guzzle\Service\Client as GuzzleClient;
-use Guzzle\Service\Description\ServiceDescription as GuzzleServiceDescription;
-
-use WebPay\Charge;
-use WebPay\Customer;
-use WebPay\Token;
-use WebPay\Event;
-use WebPay\Shop;
-use WebPay\Recursion;
-use WebPay\Account;
-
-use WebPay\ApiException;
-use WebPay\ApiConnectionException;
-use WebPay\InvalidRequestException;
-use WebPay\InvalidResponseException;
 
 use WebPay\Data\EventResponse;
 use WebPay\ErrorResponse\InvalidRequestException as ERInvalidRequestException;
@@ -59,7 +45,7 @@ class WebPay
 
         $this->client->setDefaultOption('headers/Accept', "application/json");
 
-        $this->client->setDefaultOption('headers/User-Agent', "Apipa-webpay/2.1.0 php");
+        $this->client->setDefaultOption('headers/User-Agent', "Apipa-webpay/2.1.1 php");
 
         $this->client->setDefaultOption('headers/Accept-Language', "en");
         $this->client->getEventDispatcher()->addListener('request.error', array($this, 'onRequestError'));
@@ -79,19 +65,19 @@ class WebPay
         $this->client->setDefaultOption('headers/Accept-Language', $value);
     }
 
-
-
     /**
      * Decode request body sent as Webhook
      *
-     * @param string $requestBody     JSON string
-     * @return EventResponse  object that represents webhook data or null
+     * @param  string        $requestBody JSON string
+     * @return EventResponse object that represents webhook data or null
      */
-    public function receiveWebhook($requestBody) {
+    public function receiveWebhook($requestBody)
+    {
         $decodedJson = json_decode($requestBody, true);
         if (!$decodedJson) {
             throw new ApiConnectionException('Webhook request body is invalid JSON string', null);
         }
+
         return new EventResponse($decodedJson);
     }
 #othewise
@@ -113,9 +99,9 @@ class WebPay
     /**
      * Dispatch API request
      *
-     * @param string $method     HTTP method
-     * @param string $path       Target path relative to base_url option value
-     * @param object $paramData  Request data
+     * @param string $method    HTTP method
+     * @param string $path      Target path relative to base_url option value
+     * @param object $paramData Request data
      *
      * @return mixed Response object
      */
@@ -134,6 +120,7 @@ class WebPay
         }
         try {
             $res = $req->send();
+
             return $res->json();
         } catch (\Guzzle\Common\Exception\RuntimeException $e) {
             throw ApiConnectionException::inRequest($e);
@@ -152,7 +139,7 @@ class WebPay
     }
 
     /**
-     * @param  GuzzleEvent $event
+     * @param  GuzzleEvent     $event
      * @throws WebPayException
      */
     public function onRequestError(GuzzleEvent $event)
@@ -161,7 +148,7 @@ class WebPay
     }
 
     /**
-     * @param  GuzzleEvent $event
+     * @param  GuzzleEvent     $event
      * @throws WebPayException
      */
     public function onRequestException(GuzzleEvent $event)
@@ -184,19 +171,19 @@ class WebPay
             throw ApiConnectionException::invalidJson($e);
         }
         $status = $response->getStatusCode();
-        if ( $status == 400 ) {
+        if ($status == 400) {
             throw new ERInvalidRequestException($status, $data);
         }
-        if ( $status == 401 ) {
+        if ($status == 401) {
             throw new ERAuthenticationException($status, $data);
         }
-        if ( $status == 402 ) {
+        if ($status == 402) {
             throw new ERCardException($status, $data);
         }
-        if ( $status == 404 ) {
+        if ($status == 404) {
             throw new ERInvalidRequestException($status, $data);
         }
-        if ( true ) {
+        if (true) {
             throw new ERApiException($status, $data);
         }
         throw new \Exception("Unknown error is returned");

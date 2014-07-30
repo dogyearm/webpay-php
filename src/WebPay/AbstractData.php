@@ -28,6 +28,7 @@ class AbstractData
         foreach ($this->attributes as $k => $v) {
             $result .= '  ' . $this->camelize($k) . ': ' . $this->stringifyField($v) . "\n";
         }
+
         return $result . '>';
     }
 
@@ -38,21 +39,23 @@ class AbstractData
             foreach ($value as $k => $v) {
                 $result .= '    ' . $k . ': ' . $this->stringifyField($v) . "\n";
             }
+
             return $result . "  ]";
-        } else if (is_array($value)) {
+        } elseif (is_array($value)) {
             $data = array();
             foreach ($value as $elem) {
                 array_push($data, $this->stringifyField($elem));
             }
+
             return '[' . implode(", ", $data) . ']';
-        } else if ($value === null) {
+        } elseif ($value === null) {
             return "null";
-        } else if ($value === true) {
+        } elseif ($value === true) {
             return "true";
-        } else if ($value === false) {
+        } elseif ($value === false) {
             return "false";
         } else {
-            return implode("\n  ", explode("\n", (string)$value));
+            return implode("\n  ", explode("\n", (string) $value));
         }
     }
 
@@ -64,6 +67,7 @@ class AbstractData
     protected function camelize($str)
     {
         $value = preg_replace_callback("/([_]?([a-z0-9]+))/", function ($matches) { return ucwords($matches[2]);}, $str);
+
         return strtolower($value[0]) . substr($value, 1);
     }
 
@@ -82,6 +86,7 @@ class AbstractData
         foreach ($fields as $f) {
             $result[$f] = array_key_exists($f, $params) ? $params[$f] : null;
         }
+
         return $result;
     }
 

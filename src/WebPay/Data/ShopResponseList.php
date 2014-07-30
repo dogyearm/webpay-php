@@ -2,17 +2,16 @@
 
 namespace WebPay\Data;
 
-use WebPay\InvalidRequestException;
 use WebPay\AbstractData;
-use WebPay\Data\ShopResponse;
 
-class ShopResponseList extends AbstractData {
+class ShopResponseList extends AbstractData
+{
 
     public function __construct(array $params)
     {
         $this->fields = array('object', 'url', 'count', 'data');
         $params = $this->normalize($this->fields, $params);
-        $params['data'] = is_array($params['data']) ? array_map(function($x) { return is_array($x) ? new ShopResponse($x) : $x; }, $params['data']) : $params['data'];
+        $params['data'] = is_array($params['data']) ? array_map(function ($x) { return is_array($x) ? new ShopResponse($x) : $x; }, $params['data']) : $params['data'];
         $this->attributes = $params;
     }
 
@@ -24,20 +23,18 @@ class ShopResponseList extends AbstractData {
     public function requestBody()
     {
         $result = array();
-
         $this->copyIfExists($this->attributes, $result, 'object', 'requestBody');
-
         $this->copyIfExists($this->attributes, $result, 'url', 'requestBody');
-
         $this->copyIfExists($this->attributes, $result, 'count', 'requestBody');
-
         $this->copyIfExists($this->attributes, $result, 'data', 'requestBody');
+
         return $result;
     }
 
     public function queryParams()
     {
         $result = array();
+
         return $result;
     }
 }

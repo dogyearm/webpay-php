@@ -5,7 +5,8 @@ namespace WebPay\Data;
 use WebPay\InvalidRequestException;
 use WebPay\AbstractData;
 
-class RecursionRequestCreate extends AbstractData {
+class RecursionRequestCreate extends AbstractData
+{
 
     public static function create($params)
     {
@@ -34,28 +35,22 @@ class RecursionRequestCreate extends AbstractData {
     public function requestBody()
     {
         $result = array();
-
         $this->copyIfExists($this->attributes, $result, 'amount', 'requestBody');
-
         $this->copyIfExists($this->attributes, $result, 'currency', 'requestBody');
-
         $this->copyIfExists($this->attributes, $result, 'customer', 'requestBody');
-
         $this->copyIfExists($this->attributes, $result, 'period', 'requestBody');
-
         $this->copyIfExists($this->attributes, $result, 'description', 'requestBody');
-
         $this->copyIfExists($this->attributes, $result, 'shop', 'requestBody');
-
         $this->copyIfExists($this->attributes, $result, 'first_scheduled', 'requestBody');
-
         $this->copyIfExists($this->attributes, $result, 'uuid', 'requestBody');
+
         return $result;
     }
 
     public function queryParams()
     {
         $result = array();
+
         return $result;
     }
 }
