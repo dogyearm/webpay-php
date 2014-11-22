@@ -5,6 +5,7 @@ namespace WebPay;
 use WebPay\Data\ChargeRequestCreate;
 use WebPay\Data\ChargeResponse;
 use WebPay\Data\ChargeIdRequest;
+use WebPay\Data\ChargeRequestRefund;
 use WebPay\Data\ChargeRequestWithAmount;
 use WebPay\Data\ChargeListRequest;
 use WebPay\Data\ChargeResponseList;
@@ -52,12 +53,12 @@ class Charge
      * Refund a paid charge specified by charge id.
      * Optional argument amount is to refund partially.
      *
-     * @param  mixed                   $params a value convertible to ChargeRequestWithAmount
-     * @return ChargeRequestWithAmount
+     * @param  mixed               $params a value convertible to ChargeRequestRefund
+     * @return ChargeRequestRefund
      */
     public function refund($params = array())
     {
-        $req = ChargeRequestWithAmount::create($params);
+        $req = ChargeRequestRefund::create($params);
         $rawResponse = $this->client->request('post', 'charges' . '/' . (string) $req->id . '/' . 'refund', $req);
 
         return new ChargeResponse($rawResponse);

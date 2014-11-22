@@ -1,6 +1,6 @@
 {
   "name": "webpay/webpay",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "Bindings of WebPay API",
   "license": "MIT",
   "authors": [{

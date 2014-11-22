@@ -45,7 +45,7 @@ class WebPay
 
         $this->client->setDefaultOption('headers/Accept', "application/json");
 
-        $this->client->setDefaultOption('headers/User-Agent', "Apipa-webpay/2.2.0 php");
+        $this->client->setDefaultOption('headers/User-Agent', "Apipa-webpay/2.2.1 php");
 
         $this->client->setDefaultOption('headers/Accept-Language', "en");
         $this->client->getEventDispatcher()->addListener('request.error', array($this, 'onRequestError'));

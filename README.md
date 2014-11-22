@@ -14,7 +14,7 @@ Add the following to `composer.json`.
 ```json
 {
     "require": {
-        "webpay/webpay": "2.2.0"
+        "webpay/webpay": "2.2.1"
     }
 }
 ```
