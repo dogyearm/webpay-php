@@ -19,23 +19,4 @@ class ChargeFeeResponse extends AbstractData
         throw new \Exception('This class is immutable');
     }
 
-    public function requestBody()
-    {
-        $result = array();
-        $this->copyIfExists($this->attributes, $result, 'object', 'requestBody');
-        $this->copyIfExists($this->attributes, $result, 'transaction_type', 'requestBody');
-        $this->copyIfExists($this->attributes, $result, 'transaction_fee', 'requestBody');
-        $this->copyIfExists($this->attributes, $result, 'rate', 'requestBody');
-        $this->copyIfExists($this->attributes, $result, 'amount', 'requestBody');
-        $this->copyIfExists($this->attributes, $result, 'created', 'requestBody');
-
-        return $result;
-    }
-
-    public function queryParams()
-    {
-        $result = array();
-
-        return $result;
-    }
 }

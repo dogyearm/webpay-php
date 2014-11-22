@@ -24,26 +24,4 @@ class CustomerResponse extends AbstractData
         throw new \Exception('This class is immutable');
     }
 
-    public function requestBody()
-    {
-        $result = array();
-        $this->copyIfExists($this->attributes, $result, 'id', 'requestBody');
-        $this->copyIfExists($this->attributes, $result, 'object', 'requestBody');
-        $this->copyIfExists($this->attributes, $result, 'livemode', 'requestBody');
-        $this->copyIfExists($this->attributes, $result, 'created', 'requestBody');
-        $this->copyIfExists($this->attributes, $result, 'active_card', 'requestBody');
-        $this->copyIfExists($this->attributes, $result, 'description', 'requestBody');
-        $this->copyIfExists($this->attributes, $result, 'email', 'requestBody');
-        $this->copyIfExists($this->attributes, $result, 'recursions', 'requestBody');
-        $this->copyIfExists($this->attributes, $result, 'deleted', 'requestBody');
-
-        return $result;
-    }
-
-    public function queryParams()
-    {
-        $result = array();
-
-        return $result;
-    }
 }

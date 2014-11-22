@@ -5,7 +5,7 @@ This library is automatically generated.
 
 ## Requirements
 
-PHP 5.3+
+PHP 5.4+
 
 ## Installation
 
@@ -14,7 +14,7 @@ Add the following to `composer.json`.
 ```json
 {
     "require": {
-        "webpay/webpay": "2.1.1"
+        "webpay/webpay": "2.2.0"
     }
 }
 ```

@@ -3,30 +3,13 @@
 namespace WebPay\ErrorResponse;
 
 use WebPay\Data\ErrorData;
-use WebPay\ApiException  as RootException;
 
-class AuthenticationException extends RootException
+class AuthenticationException extends ErrorResponseException
 {
-    /** var integer */
-    private $status;
-    /** var ErrorData */
-    private $data;
-
-    public function __construct($status, array $data)
+    public function __construct($status, array $rawData)
     {
-        $data = new ErrorData($data);
-        parent::__construct(sprintf('%s: %s', 'AuthenticationException', $data->error->message));
-        $this->status = $status;
-        $this->data = $data;
-    }
-
-    public function getStatus()
-    {
-        return $this->status;
-    }
-
-    public function getData()
-    {
-        return $this->data;
+        $data = new ErrorData($rawData);
+        $message = sprintf('%s: %s', 'AuthenticationException', $data->error->message);
+        parent::__construct($message, $status, $data);
     }
 }

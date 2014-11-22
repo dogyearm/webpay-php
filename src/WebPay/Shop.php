@@ -6,6 +6,7 @@ use WebPay\Data\ShopRequestCreate;
 use WebPay\Data\ShopResponse;
 use WebPay\Data\ShopIdRequest;
 use WebPay\Data\ShopRequestUpdate;
+use WebPay\Data\ShopRequestAlterStatus;
 use WebPay\Data\BasicListRequest;
 use WebPay\Data\ShopResponseList;
 
@@ -57,6 +58,20 @@ class Shop
     {
         $req = ShopRequestUpdate::create($params);
         $rawResponse = $this->client->request('post', 'shops' . '/' . (string) $req->id, $req);
+
+        return new ShopResponse($rawResponse);
+    }
+
+    /**
+     * Alter the test shop's status to the specified one
+     *
+     * @param  mixed                  $params a value convertible to ShopRequestAlterStatus
+     * @return ShopRequestAlterStatus
+     */
+    public function alterStatus($params = array())
+    {
+        $req = ShopRequestAlterStatus::create($params);
+        $rawResponse = $this->client->request('post', 'shops' . '/' . (string) $req->id . '/' . 'alter_status', $req);
 
         return new ShopResponse($rawResponse);
     }

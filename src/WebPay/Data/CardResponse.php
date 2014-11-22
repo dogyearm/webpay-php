@@ -19,26 +19,4 @@ class CardResponse extends AbstractData
         throw new \Exception('This class is immutable');
     }
 
-    public function requestBody()
-    {
-        $result = array();
-        $this->copyIfExists($this->attributes, $result, 'object', 'requestBody');
-        $this->copyIfExists($this->attributes, $result, 'exp_month', 'requestBody');
-        $this->copyIfExists($this->attributes, $result, 'exp_year', 'requestBody');
-        $this->copyIfExists($this->attributes, $result, 'fingerprint', 'requestBody');
-        $this->copyIfExists($this->attributes, $result, 'last4', 'requestBody');
-        $this->copyIfExists($this->attributes, $result, 'type', 'requestBody');
-        $this->copyIfExists($this->attributes, $result, 'cvc_check', 'requestBody');
-        $this->copyIfExists($this->attributes, $result, 'name', 'requestBody');
-        $this->copyIfExists($this->attributes, $result, 'country', 'requestBody');
-
-        return $result;
-    }
-
-    public function queryParams()
-    {
-        $result = array();
-
-        return $result;
-    }
 }

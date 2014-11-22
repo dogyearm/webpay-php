@@ -43,19 +43,4 @@ class EventData extends AbstractData
         throw new \Exception('This class is immutable');
     }
 
-    public function requestBody()
-    {
-        $result = array();
-        $this->copyIfExists($this->attributes, $result, 'object', 'requestBody');
-        $this->copyIfExists($this->attributes, $result, 'previous_attributes', 'requestBody');
-
-        return $result;
-    }
-
-    public function queryParams()
-    {
-        $result = array();
-
-        return $result;
-    }
 }

@@ -20,18 +20,4 @@ class ErrorData extends AbstractData
         throw new \Exception('This class is immutable');
     }
 
-    public function requestBody()
-    {
-        $result = array();
-        $this->copyIfExists($this->attributes, $result, 'error', 'requestBody');
-
-        return $result;
-    }
-
-    public function queryParams()
-    {
-        $result = array();
-
-        return $result;
-    }
 }

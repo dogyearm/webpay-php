@@ -24,7 +24,7 @@ class TokenRequestCreate extends AbstractData
 
     public function __construct(array $params)
     {
-        $this->fields = array('card', 'uuid');
+        $this->fields = array('card', 'customer', 'uuid');
         $params = $this->normalize($this->fields, $params);
         $params['card'] = is_array($params['card']) ? new CardRequest($params['card']) : $params['card'];
         $this->attributes = $params;
@@ -41,6 +41,7 @@ class TokenRequestCreate extends AbstractData
     {
         $result = array();
         $this->copyIfExists($this->attributes, $result, 'card', 'requestBody');
+        $this->copyIfExists($this->attributes, $result, 'customer', 'requestBody');
         $this->copyIfExists($this->attributes, $result, 'uuid', 'requestBody');
 
         return $result;
