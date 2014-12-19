@@ -45,7 +45,7 @@ class WebPay
 
         $this->client->setDefaultOption('headers/Accept', "application/json");
 
-        $this->client->setDefaultOption('headers/User-Agent', "Apipa-webpay/2.2.1 php");
+        $this->client->setDefaultOption('headers/User-Agent', "Apipa-webpay/2.2.2 php");
 
         $this->client->setDefaultOption('headers/Accept-Language', "en");
         $this->client->getEventDispatcher()->addListener('request.error', array($this, 'onRequestError'));
@@ -110,7 +110,7 @@ class WebPay
         $req = $this->client->createRequest($method, $path, array());
         $query = $req->getQuery();
         foreach ($paramData->queryParams() as $k => $v) {
-            if ($v == null) continue;
+            if ($v === null) continue;
             $query->add($k, (is_bool($v)) ? ($v ? 'true' : 'false') : $v);
         }
         if ($method !== 'get' && $method !== 'delete') {
